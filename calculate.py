@@ -14,6 +14,7 @@ sizes = {
     'triangle-perimeter': 3
 }
 
+
 def calc(fig, func, size):
     # Проверка на допустимость фигуры и функции
     assert fig in figs, f"Invalid figure: {fig}"
