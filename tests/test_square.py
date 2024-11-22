@@ -1,7 +1,9 @@
 import unittest
 from square import area, perimeter
 
-class TestSquare(unittest. TestCase):
+
+class TestSquare(unittest.TestCase):
+
     def test_area(self):
         # Arrange (given)
         side = 1
@@ -22,7 +24,7 @@ class TestSquare(unittest. TestCase):
         # Assert (then)
         self.assertEqual(result, 0)
 
-    def test_perimeter (self):
+    def test_perimeter(self):
         # Arrange (given)
         side = 1
 
@@ -35,12 +37,13 @@ class TestSquare(unittest. TestCase):
     def test_perimeter_zero(self):
         # Arrange (given)
         side = 0
-        
+
         # Act (when)
-        result = perimeter (side)
+        result = perimeter(side)
 
         # Assert (then)
         self.assertEqual(result, 0)
 
-if __name__== '__main__':
+
+if __name__ == '__main__':
     unittest.main()

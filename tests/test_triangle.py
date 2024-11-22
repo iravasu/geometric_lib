@@ -1,7 +1,9 @@
 import unittest
 from triangle import area, perimeter
 
+
 class TestTriangle(unittest.TestCase):
+
     def test_area(self):
         # Arrange (given)
         a, b, c = 3, 4, 5
@@ -10,9 +12,9 @@ class TestTriangle(unittest.TestCase):
         result = area(a, b, c)
 
         # Assert (then)
-        self.assertEqual (result, 6)
+        self.assertEqual(result, 6)
 
-    def test_perimeter (self):
+    def test_perimeter(self):
         # Arrange (given)
         a, b, c = 3, 4, 5
 
@@ -22,5 +24,6 @@ class TestTriangle(unittest.TestCase):
         # Assert (then)
         self.assertEqual(result, 12)
 
-if __name__== '__main__':
+
+if __name__ == '__main__':
     unittest.main()

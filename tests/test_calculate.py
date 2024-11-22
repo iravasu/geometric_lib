@@ -1,9 +1,10 @@
 import unittest
-from calculate import calc 
+from calculate import calc
 import math
 
+
 class TestCalculate(unittest.TestCase):
-    
+
     def test_circle_area(self):
         # Arrange (given)
         fig = 'circle'
@@ -15,7 +16,7 @@ class TestCalculate(unittest.TestCase):
 
         # Assert (then)
         self.assertAlmostEqual(result, math.pi, places=7)
-    
+
     def test_square_area(self):
         fig = 'square'
         func = 'area'
@@ -23,7 +24,7 @@ class TestCalculate(unittest.TestCase):
 
         result = calc(fig, func, size)
 
-        self.assertEqual (result, 1)
+        self.assertEqual(result, 1)
 
     def test_triangle_area(self):
         fig = 'triangle'
@@ -34,7 +35,7 @@ class TestCalculate(unittest.TestCase):
 
         self.assertEqual(result, 6)
 
-    def test_circle_perimeter (self):
+    def test_circle_perimeter(self):
         fig = 'circle'
         func = 'perimeter'
         size = [1]
@@ -43,7 +44,7 @@ class TestCalculate(unittest.TestCase):
 
         self.assertAlmostEqual(result, 2 * math.pi, places=7)
 
-    def test_square_perimeter (self):
+    def test_square_perimeter(self):
         fig = 'square'
         func = 'perimeter'
         size = [1]
@@ -95,5 +96,6 @@ class TestCalculate(unittest.TestCase):
         with self.assertRaises(AssertionError):
             calc(fig, func, size)
 
-if __name__== '__main__':
+
+if __name__ == '__main__':
     unittest.main()
