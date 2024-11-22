@@ -2,6 +2,7 @@ import circle
 import square
 import triangle
 
+# Список поддерживаемых фигур и функций
 figs = ['circle', 'square', 'triangle']
 funcs = ['perimeter', 'area']
 sizes = {
