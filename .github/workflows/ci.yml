@@ -29,9 +29,9 @@ jobs:
           echo "Ник на Github: ${{ github.actor }}"
         
       - name: Set up Python 3.13
-        uses: actions/ setup-python@v4 
+        uses: actions/setup-python@v4 
         with:
-          python-version: 3.13
+          python-version: '3.13'
 
       - name: Run unit tests
         run: |
@@ -40,4 +40,4 @@ jobs:
       - name: Lint code with flake8
         run: |
           pip install flake8
-          flakes --ignore=F401 .
+          flake8 --ignore=F401 .
