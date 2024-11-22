@@ -2,7 +2,6 @@ import circle
 import square
 import triangle
 
-# Список поддерживаемых фигур и функций
 figs = ['circle', 'square', 'triangle']
 funcs = ['perimeter', 'area']
 sizes = {
@@ -16,35 +15,50 @@ sizes = {
 
 
 def calc(fig, func, size):
-    # Проверка на допустимость фигуры и функции
-    assert fig in figs, f"Invalid figure: {fig}"
-    assert func in funcs, f"Invalid function: {func}"
+    # Проверка наличия передаваемого аргумента fig в figs
+    assert fig in figs
 
-    # Формируем ключ для поиска в словаре размеров
+    # Проверка наличия передаваемого аргумента func в funcs
+    assert func in funcs
+
+    # Проверка на количество аргументов
     key = f'{fig}-{func}'
     expected_args = sizes.get(key)
-    assert expected_args is not None, f"Unsupported operation: {key}"
-    
-    # Проверка на правильное количество аргументов
-    assert len(size) == expected_args, f"Expected {expected_args} arguments, got {len(size)}"
-    
-    # Проверка на корректность размеров
-    assert all(s >= 0 for s in size), "Sizes must be non-negative"
+    assert expected_args is not None
+    assert len(size) == expected_args
 
-    # Дополнительная проверка для треугольников
+    # Проверка на неотрицательность аргументов
+    assert all(s >= 0 for s in size)
+
+    # Проверка на существование треугольника
     if fig == 'triangle':
         a, b, c = size
-        assert a + b > c and a + c > b and b + c > a, "Invalid triangle sides"
+        assert a + b > c and a + c > b and b + c > a
 
-    # Получаем соответствующий объект фигуры
-    shape = globals().get(fig)  # Получаем объект фигуры (circle, square, triangle)
-    if shape is None:
-        raise ValueError(f"Shape {fig} not found")
+    try:
+        # Вызов функции из соответствующего модуля
+        result = getattr(globals()[fig], func)(*size)
+    except ValueError as e:
+        print(f"Ошибка: {e}")  # Обработка исключения ValueError
+        return None
 
-    # Вызываем нужную функцию (perimeter или area)
-    func_to_call = getattr(shape, func, None)
-    if func_to_call is None:
-        raise ValueError(f"Function {func} not found for {fig}")
+    return result
 
-    # Возвращаем результат выполнения функции
-    return func_to_call(*size)
+
+if __name__ == "main":
+    func = ''
+    fig = ''
+    size = list()
+
+    while fig not in figs:
+        fig = input(f"Enter figure name, avaliable are {figs}:\n")
+
+    while func not in funcs:
+        func = input(f"Enter function name, avaliable are {funcs}:\n")
+
+    while len(size) != sizes.get(f"{func}-{fig}", 1):
+        size = list(map(int, input(
+            "Input figure sizes separated by space, 1 for circle and square\n"
+        ).split(' ')))
+
+    calc(fig, func, size)
